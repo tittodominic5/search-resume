@@ -87,6 +87,8 @@ export default function SearchComponent() {
         setExpandedSearch(false);
       }
     } catch (err) {
+      console.log(err);
+
       setError("An error occurred while searching. Please try again.");
       setResults([]);
     } finally {
