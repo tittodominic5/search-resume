@@ -1,20 +1,22 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion } from "framer-motion";
-import { MoveVertical, MoveHorizontal, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
+import { Key, useEffect, useState } from "react";
 import SearchComponent from "./search";
 
 export default function HomePage() {
   const [showSearch, setShowSearch] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
-  const [particles, setParticles] = useState<any>([]);
+  const [particles, setParticles] = useState<
+    { id: number; x: number; y: number; size: number; duration: number }[]
+  >([]);
 
   // Handle mouse movement for interactive background
   useEffect(() => {
-    const handleMouseMove = (e: any) => {
+    const handleMouseMove = (e: MouseEvent): void => {
       setMousePosition({
         x: e.clientX / window.innerWidth,
         y: e.clientY / window.innerHeight,
@@ -62,19 +64,27 @@ export default function HomePage() {
       <div className="absolute inset-0 bg-black opacity-20 mix-blend-overlay" />
 
       {/* Floating particles */}
-      {particles.map((particle: any) => (
-        <div
-          key={particle.id}
-          className="absolute rounded-full bg-white opacity-70 mix-blend-screen"
-          style={{
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-            width: `${particle.size}px`,
-            height: `${particle.size}px`,
-            animation: `float ${particle.duration}s infinite ease-in-out`,
-          }}
-        />
-      ))}
+      {particles.map(
+        (particle: {
+          id: Key | null | undefined;
+          x: any;
+          y: any;
+          size: any;
+          duration: any;
+        }) => (
+          <div
+            key={particle.id}
+            className="absolute rounded-full bg-white opacity-70 mix-blend-screen"
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              animation: `float ${particle.duration}s infinite ease-in-out`,
+            }}
+          />
+        )
+      )}
 
       <AnimatePresence mode="wait">
         {!showSearch ? (
