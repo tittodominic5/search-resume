@@ -168,35 +168,41 @@ export default function SearchComponent() {
                 <div className="relative">
                   <div className="flex">
                     <div className="relative flex-grow">
-                      <div className="relative">
-                        <Search className="absolute left-3 top-3 h-5 w-5 text-slate-400 pointer-events-none" />
-                        <Textarea
-                          ref={textareaRef}
-                          placeholder="Paste job description here"
-                          value={query}
-                          onChange={(e) => setQuery(e.target.value)}
-                          onKeyDown={handleKeyDown}
-                          className={`min-h-[100px] py-3 pl-12 pr-10 text-lg border-0 shadow-none bg-transparent resize-none ${
-                            hasResults && !expandedSearch
-                              ? "text-indigo-700 font-medium"
-                              : ""
-                          }`}
-                          maxLength={maxLength}
-                          style={{ height: "auto", overflow: "hidden" }}
-                        />
-                        {query.length > 0 && (
-                          <button
-                            onClick={() => setQuery("")}
-                            className="absolute right-3 top-4 text-slate-400 hover:text-slate-600"
-                          >
-                            <X className="h-4 w-4" />
-                          </button>
-                        )}
-                      </div>
+                      {hasResults && !expandedSearch ? (
+                        <div className="pt-9 px-6 w-188 text-lg text-black truncate font-sans font-semibold">
+                          {query}{" "}
+                        </div>
+                      ) : (
+                        <div className="relative">
+                          <Search className="absolute left-3 top-3 h-5 w-5 text-slate-400 pointer-events-none" />
+                          <Textarea
+                            ref={textareaRef}
+                            placeholder="Paste job description here"
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                            className={`min-h-[400px] py-3 pl-12 pr-10 text-lg border-0 shadow-none bg-transparent resize-none ${
+                              hasResults && !expandedSearch
+                                ? "text-indigo-700 font-medium"
+                                : ""
+                            }`}
+                            maxLength={maxLength}
+                            style={{ height: "auto", overflow: "hidden" }}
+                          />
+                          {query.length > 0 && (
+                            <button
+                              onClick={() => setQuery("")}
+                              className="absolute right-3 top-4 text-slate-400 hover:text-slate-600"
+                            >
+                              <X className="h-4 w-4" />
+                            </button>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
 
-                  <div className="flex justify-end mt-2">
+                  <div className="flex justify-end">
                     {hasResults && !expandedSearch ? (
                       <TooltipProvider>
                         <Tooltip>
@@ -205,13 +211,13 @@ export default function SearchComponent() {
                               variant="ghost"
                               size="icon"
                               onClick={toggleExpandedSearch}
-                              className="h-10 w-10 rounded-full hover:bg-indigo-100"
+                              className="translate-y-[-2rem] rounded-full hover:bg-indigo-100 pb-0"
                             >
-                              <ArrowUp className="h-4 w-4" />
+                              <ArrowUp className="h-6 w-6" />
                             </Button>
                           </TooltipTrigger>
                           <TooltipContent>
-                            <p>Expand search</p>
+                            <p>Expand JD</p>
                           </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
@@ -219,7 +225,7 @@ export default function SearchComponent() {
                       <Button
                         onClick={handleSearch}
                         disabled={!isValid || isLoading}
-                        className="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-6"
+                        className="bg-indigo-600 hover:bg-indigo-700 text-white py-4 mt-4 px-6"
                       >
                         {isLoading ? (
                           <>
