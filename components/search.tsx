@@ -12,7 +12,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUp, Loader2, Search, Tag, X } from "lucide-react";
+import { Loader2, Search, Tag, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 // Define the type for search results
@@ -190,7 +190,7 @@ export default function SearchComponent() {
                               </div>
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p>Click to edit the job description</p>
+                              <p>Click to edit job description</p>
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>
