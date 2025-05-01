@@ -169,9 +169,31 @@ export default function SearchComponent() {
                   <div className="flex">
                     <div className="relative flex-grow">
                       {hasResults && !expandedSearch ? (
-                        <div className="pt-9 px-6 w-188 text-lg text-black truncate font-sans font-semibold">
-                          {query}{" "}
-                        </div>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <div
+                                className={`py-9 px-6 mt-0 transition-all duration-300 cursor-pointer ${
+                                  query.trim()
+                                    ? "w-full"
+                                    : "w-1/2 overflow-hidden whitespace-nowrap text-ellipsis"
+                                } text-lg text-black font-sans font-semibold`}
+                                onClick={toggleExpandedSearch}
+                              >
+                                {query.trim() ? (
+                                  <div className="line-clamp-3 break-words">
+                                    {query}{" "}
+                                  </div>
+                                ) : (
+                                  <div>{query}</div>
+                                )}
+                              </div>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Click to edit the job description</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
                       ) : (
                         <div className="relative">
                           <Search className="absolute left-3 top-3 h-5 w-5 text-slate-400 pointer-events-none" />
@@ -204,23 +226,7 @@ export default function SearchComponent() {
 
                   <div className="flex justify-end">
                     {hasResults && !expandedSearch ? (
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              onClick={toggleExpandedSearch}
-                              className="translate-y-[-2rem] rounded-full hover:bg-indigo-100 pb-0"
-                            >
-                              <ArrowUp className="h-6 w-6" />
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Expand JD</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
+                      <></>
                     ) : (
                       <Button
                         onClick={handleSearch}
