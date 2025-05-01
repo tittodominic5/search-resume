@@ -1,7 +1,6 @@
 "use client";
 
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
@@ -12,14 +11,16 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { AnimatePresence, motion } from "framer-motion";
-import { Loader2, Search, Tag, X } from "lucide-react";
+import { Loader2, Search, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import SearchResults from "./results";
 
 // Define the type for search results
 interface SearchResult {
   id: string;
   title: string;
   description: string;
+  pdfUrl: string;
   tags?: string[];
 }
 
@@ -34,24 +35,29 @@ const mockSearchApi = async (query: string): Promise<SearchResult[]> => {
   return [
     {
       id: "1",
-      title: `Result for "${query.split("\n")[0]}" #1`,
+      title: "Next.js Performance Optimization Guide",
       description:
-        "This is the first search result description with more details about the content.",
-      tags: ["Featured", "New"],
+        "Learn how to optimize your Next.js application for better performance and SEO",
+      pdfUrl:
+        "https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf",
+      tags: ["Next.js", "Performance", "SEO"],
     },
     {
       id: "2",
-      title: `Result for "${query.split("\n")[0]}" #2`,
+      title: "TypeScript Best Practices",
       description:
-        "This is the second search result description with additional information.",
-      tags: ["Popular"],
+        "A comprehensive guide to writing clean and maintainable TypeScript code",
+      pdfUrl:
+        "https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf",
+      tags: ["TypeScript", "Best Practices"],
     },
     {
       id: "3",
-      title: `Result for "${query.split("\n")[0]}" #3`,
+      title: "React Design Patterns",
       description:
-        "This is the third search result description with relevant details for the user.",
-      tags: ["Guide", "Tutorial"],
+        "Common design patterns and architectural approaches for React applications",
+      pdfUrl: "/documents/react-patterns.pdf",
+      tags: ["React", "Architecture", "Patterns"],
     },
   ];
 };
@@ -320,47 +326,7 @@ export default function SearchComponent() {
                 </Button>
               </div>
 
-              <div className="space-y-3">
-                {results.map((result) => (
-                  <motion.div
-                    key={result.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="group"
-                  >
-                    <Card className="overflow-hidden hover:shadow-lg transition-all border-slate-200 group-hover:border-indigo-200">
-                      <CardContent className="p-4">
-                        <div className="flex items-start justify-between">
-                          <div>
-                            <h3 className="font-medium text-lg text-indigo-900 group-hover:text-indigo-700">
-                              {result.title}
-                            </h3>
-                            <p className="text-slate-600 mt-1">
-                              {result.description}
-                            </p>
-
-                            {result.tags && result.tags.length > 0 && (
-                              <div className="flex gap-2 mt-3">
-                                {result.tags.map((tag, index) => (
-                                  <Badge
-                                    key={index}
-                                    variant="secondary"
-                                    className="bg-indigo-50 text-indigo-700 hover:bg-indigo-100"
-                                  >
-                                    <Tag className="h-3 w-3 mr-1" />
-                                    {tag}
-                                  </Badge>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
+              <SearchResults results={results} />
             </motion.div>
           )}
         </AnimatePresence>
