@@ -174,7 +174,7 @@ export default function SearchComponent() {
                                   query.trim()
                                     ? "w-full"
                                     : "w-1/2 overflow-hidden whitespace-nowrap text-ellipsis"
-                                } text-lg text-black font-sans font-semibold`}
+                                } text-lg text-gray-700 font-semibold`}
                                 onClick={toggleExpandedSearch}
                               >
                                 {query.trim() ? (

@@ -28,18 +28,23 @@ export default function SearchResults({ results }: SearchResultsProps) {
           transition={{ duration: 0.2 }}
           className="group"
         >
-          <Card className="overflow-hidden hover:shadow-lg transition-all border-slate-200 group-hover:border-indigo-200 h-30">
+          <Card className="overflow-hidden hover:shadow-lg transition-all border-slate-200 group-hover:border-indigo-200 h-36">
             <CardContent className="px-5 py-0">
               <div className="flex items-start justify-between">
                 <div className="w-full">
                   {candidate.resumeUrl ? (
-                    <Link href={candidate.resumeUrl} target="_blank">
-                      <h3 className="font-medium text-lg text-indigo-900 group-hover:text-indigo-700 cursor-pointer hover:underline flex items-center">
+                    <>
+                      <h3 className="font-medium text-lg text-indigo-900 group-hover:text-indigo-700 cursor-default flex items-center">
                         <FileText className="h-4 w-4 mr-2 text-indigo-600" />
                         {candidate.name}
-                        <ExternalLink className="h-4 w-4 ml-2" />
                       </h3>
-                    </Link>
+                      <Link href={candidate.resumeUrl} target="_blank">
+                        <h5 className="font-mono text-sm text-gray-500 cursor-pointer hover:underline flex items-center pl-1 pt-1 italic">
+                          Click here to open resume in new tab
+                          <ExternalLink className="h-4 w-4 ml-2" />
+                        </h5>
+                      </Link>
+                    </>
                   ) : (
                     <h3 className="font-medium text-lg text-indigo-900">
                       {candidate.name}
