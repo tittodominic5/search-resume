@@ -18,10 +18,9 @@ import SearchResults from "./results";
 // Define the type for search results
 interface SearchResult {
   id: string;
-  title: string;
-  description: string;
-  pdfUrl: string;
-  tags?: string[];
+  name: string;
+  resumeUrl: string;
+  skills: string[];
 }
 
 // Mock API function - replace with actual API call
@@ -35,29 +34,21 @@ const mockSearchApi = async (query: string): Promise<SearchResult[]> => {
   return [
     {
       id: "1",
-      title: "Next.js Performance Optimization Guide",
-      description:
-        "Learn how to optimize your Next.js application for better performance and SEO",
-      pdfUrl:
-        "https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf",
-      tags: ["Next.js", "Performance", "SEO"],
+      name: "Alice Johnson",
+      resumeUrl: "https://example.com/resumes/alice-johnson.pdf",
+      skills: ["Next.js", "Performance", "SEO"],
     },
     {
       id: "2",
-      title: "TypeScript Best Practices",
-      description:
-        "A comprehensive guide to writing clean and maintainable TypeScript code",
-      pdfUrl:
-        "https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf",
-      tags: ["TypeScript", "Best Practices"],
+      name: "Bob Smith",
+      resumeUrl: "https://example.com/resumes/bob-smith.pdf",
+      skills: ["TypeScript", "Best Practices"],
     },
     {
       id: "3",
-      title: "React Design Patterns",
-      description:
-        "Common design patterns and architectural approaches for React applications",
-      pdfUrl: "/documents/react-patterns.pdf",
-      tags: ["React", "Architecture", "Patterns"],
+      name: "Charlie Brown",
+      resumeUrl: "https://example.com/resumes/bob-smith.pdf",
+      skills: ["React", "Architecture", "Patterns"],
     },
   ];
 };
