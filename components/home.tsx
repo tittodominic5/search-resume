@@ -50,7 +50,7 @@ export default function HomePage() {
     <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
       {/* Interactive gradient background */}
       <div
-        className="absolute inset-0 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 transition-all duration-700 ease-in-out"
+        className="absolute inset-0 bg-gradient-to-br from-green-600 via-blue-600 to-black transition-all duration-700 ease-in-out"
         style={{
           backgroundPosition: `${mousePosition.x * 100}% ${
             mousePosition.y * 100
@@ -101,24 +101,26 @@ export default function HomePage() {
           >
             <Sparkles className="text-white mx-auto mb-6" size={32} />
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Find Exactly Who You Need
+              Discover Top Talents
             </h1>
 
             <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto">
-              Our search platform helps you discover the perfect candidates.
+              Our intelligent platform connects you with the best-fit candidates
+              for your roles.
             </p>
 
             <Button
               onClick={handleGetStarted}
               size="lg"
-              className="bg-white text-indigo-700 hover:bg-white/90 hover:text-indigo-800 font-medium px-8 py-6 text-lg rounded-full shadow-lg transition-all"
+              className="bg-white text-blue-800 hover:bg-white/90 hover:text-blue-600 font-medium px-8 py-6 text-lg rounded-full shadow-lg transition-all"
             >
               Find Candidates
             </Button>
 
             {/* Animated accent blurs */}
-            <div className="absolute -top-12 -right-12 w-32 h-32 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full blur-2xl opacity-30" />
-            <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-gradient-to-br from-pink-400 to-red-500 rounded-full blur-2xl opacity-30" />
+            <div className="absolute -top-12 -right-12 w-42 h-42 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full blur-2xl opacity-30" />
+            <div className="absolute -bottom-12 -left-12 w-72 h-72 bg-gradient-to-br from-pink-400 to-red-500 rounded-full blur-2xl opacity-30" />
+            <div className="absolute -bottom-86 -left-82 w-52 h-52 bg-gradient-to-br from-white-400 to-pink-500 rounded-full blur-2xl opacity-30" />
           </motion.div>
         ) : (
           /* Search component */
@@ -141,14 +143,14 @@ export default function HomePage() {
           >
             <div className="backdrop-blur-md bg-white/95 rounded-xl shadow-2xl p-6 border border-white/20">
               <div className="flex justify-between items-center mb-8">
-                <h2 className="text-2xl font-bold text-indigo-700 flex items-center">
-                  <Sparkles className="text-indigo-700 mr-2" size={20} />
+                <h2 className="text-2xl font-bold text-blue-700 flex items-center">
+                  <Sparkles className="text-blue-700 mr-2" size={20} />
                   Search Candidates
                 </h2>
                 <Button
                   variant="ghost"
                   onClick={() => setShowSearch(false)}
-                  className="text-indigo-700 hover:text-indigo-900 hover:bg-indigo-100"
+                  className="text-blue-700 hover:text-blue-900 hover:bg-blue-100"
                 >
                   Back to Home
                 </Button>
