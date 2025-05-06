@@ -36,35 +36,40 @@ const mockSearchApi = async (query: string): Promise<SearchResult[]> => {
     {
       id: "1",
       name: "Alice Johnson",
-      resumeUrl: "https://example.com/resumes/alice-johnson.pdf",
+      resumeUrl:
+        "https://www.ucmo.edu/offices/career-and-life-design-center/internal-resources/shared/atssampleresume.pdf",
       skills: ["Next.js", "Performance", "SEO"],
       matchScore: 92,
     },
     {
       id: "2",
       name: "Bob Smith",
-      resumeUrl: "https://example.com/resumes/bob-smith.pdf",
+      resumeUrl:
+        "https://www.ucmo.edu/offices/career-and-life-design-center/internal-resources/shared/atssampleresume.pdf",
       skills: ["TypeScript", "Best Practices"],
       matchScore: 87,
     },
     {
       id: "3",
       name: "Charlie Brown",
-      resumeUrl: "https://example.com/resumes/charlie-brown.pdf",
+      resumeUrl:
+        "https://www.ucmo.edu/offices/career-and-life-design-center/internal-resources/shared/atssampleresume.pdf",
       skills: ["React", "Architecture", "Patterns"],
       matchScore: 81,
     },
     {
       id: "4",
       name: "Diana Prince",
-      resumeUrl: "https://example.com/resumes/diana-prince.pdf",
+      resumeUrl:
+        "https://www.ucmo.edu/offices/career-and-life-design-center/internal-resources/shared/atssampleresume.pdf",
       skills: ["UI/UX", "Frontend", "React Native"],
       matchScore: 78,
     },
     {
       id: "5",
       name: "Ethan Hunt",
-      resumeUrl: "https://example.com/resumes/ethan-hunt.pdf",
+      resumeUrl:
+        "https://www.ucmo.edu/offices/career-and-life-design-center/internal-resources/shared/atssampleresume.pdf",
       skills: ["Node.js", "Express", "MongoDB"],
       matchScore: 76,
     },
