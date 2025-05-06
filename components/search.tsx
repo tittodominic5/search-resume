@@ -366,7 +366,7 @@ export default function SearchComponent() {
                         {keyRequirements.map((req, idx) => (
                           <span
                             key={idx}
-                            className="px-2 py-1 bg-indigo-100 text-indigo-700 text-xs rounded-full"
+                            className="px-2 bg-indigo-100 text-indigo-700 text-xs rounded-full"
                           >
                             {req}
                           </span>
@@ -381,7 +381,7 @@ export default function SearchComponent() {
                         <Button
                           onClick={handleSearch}
                           disabled={!isValid || isLoading}
-                          className="py-4 mt-4 px-6 text-white transition-all bg-gradient-to-r from-blue-600 to-green-900 hover:from-blue-700 hover:to-blue-700 rounded-lg shadow-lg hover:shadow-xl hover:shadow-blue-500/20 duration-200"
+                          className="py-4 mt-4 px-6 text-white transition-all bg-gradient-to-r from-blue-600 to-blue-900 hover:from-blue-700 hover:to-blue-700 rounded-lg shadow-lg hover:shadow-xl hover:shadow-blue-500/20 duration-200"
                         >
                           {isLoading ? (
                             <>
@@ -529,8 +529,8 @@ export default function SearchComponent() {
                 <p className="text-slate-700 font-medium text-lg">
                   No matching candidates found
                 </p>
-                <div className="flex flex-col items-center gap-3 mt-4 max-w-md mx-auto">
-                  <div className="bg-blue-50 rounded-lg p-4 w-full">
+                <div className="flex flex-col items-center gap-3 mt-4 max-w-md mx-auto ">
+                  {/* <div className="bg-blue-50 rounded-lg p-4 w-full">
                     <h3 className="text-blue-700 font-medium text-sm mb-2 flex items-center">
                       <Zap className="h-4 w-4 mr-1" />
                       Tips to improve your search:
@@ -549,7 +549,7 @@ export default function SearchComponent() {
                         Consider reducing required years of experience
                       </li>
                     </ul>
-                  </div>
+                  </div> */}
                   <Button
                     onClick={handleClearSearch}
                     variant="outline"

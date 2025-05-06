@@ -120,7 +120,8 @@ export default function HomePage() {
             {/* Animated accent blurs */}
             <div className="absolute -top-12 -right-12 w-42 h-42 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full blur-2xl opacity-30" />
             <div className="absolute -bottom-12 -left-12 w-72 h-72 bg-gradient-to-br from-pink-400 to-red-500 rounded-full blur-2xl opacity-30" />
-            <div className="absolute -bottom-86 -left-82 w-52 h-52 bg-gradient-to-br from-white-400 to-pink-500 rounded-full blur-2xl opacity-30" />
+            <div className="absolute -bottom-66 left-94 w-52 h-52 bg-gradient-to-br from-white-400 to-pink-500 rounded-full blur-2xl opacity-30" />
+            <div className="absolute -top-80 left-1/2 w-60 h-60 bg-gradient-to-tr from-amber-300 to-yellow-500 rounded-full blur-3xl opacity-20" />
           </motion.div>
         ) : (
           /* Search component */
