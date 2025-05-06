@@ -50,7 +50,7 @@ export default function HomePage() {
     <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
       {/* Interactive gradient background */}
       <div
-        className="absolute inset-0 bg-gradient-to-br from-green-600 via-blue-600 to-black transition-all duration-700 ease-in-out"
+        className="absolute inset-0 bg-gradient-to-br from-green-800 via-blue-600 to-slate-900 transition-all duration-700 ease-in-out"
         style={{
           backgroundPosition: `${mousePosition.x * 100}% ${
             mousePosition.y * 100
