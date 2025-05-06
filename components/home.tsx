@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import Image from "next/image";
 import { Key, useEffect, useState } from "react";
 import SearchComponent from "./search";
 
@@ -99,7 +99,13 @@ export default function HomePage() {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <Sparkles className="text-white mx-auto mb-6" size={32} />
+            <Image
+              className="text-white mx-auto mb-6 shadow-2xl hover:scale-110 transition-all duration-300 ease-in-out"
+              src="/logo.png"
+              alt="Logo"
+              width={160}
+              height={160}
+            />
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               Discover Top Talents
             </h1>
@@ -145,7 +151,14 @@ export default function HomePage() {
             <div className="backdrop-blur-md bg-white/95 rounded-xl shadow-2xl p-6 border border-white/20">
               <div className="flex justify-between items-center mb-8">
                 <h2 className="text-2xl font-bold text-blue-700 flex items-center">
-                  <Sparkles className="text-blue-700 mr-2" size={20} />
+                  <Image
+                    className="text-white mx-auto mb-0 mr-2 shadow-2xl hover:scale-110 transition-all ease-in-out duration-300 cursor-pointer"
+                    src="/logo.png"
+                    alt="Logo"
+                    width={40}
+                    height={160}
+                    onClick={() => setShowSearch(false)}
+                  />
                   Search Candidates
                 </h2>
                 <Button
