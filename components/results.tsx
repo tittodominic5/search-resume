@@ -66,7 +66,7 @@ export default function SearchResults({ results }: SearchResultsProps) {
           >
             <Card
               className="border-slate-200 hover:border-indigo-200 hover:shadow-sm transition-all duration-200 cursor-pointer"
-              onClick={() => openResumeUrl(candidate.properties?.file_path)}
+              // onClick={() => openResumeUrl(candidate.properties?.file_path)}
             >
               <CardContent className="p-3">
                 <div className="flex items-center justify-between relative">
@@ -81,9 +81,9 @@ export default function SearchResults({ results }: SearchResultsProps) {
                         title={displayName}
                       >
                         {displayName}
-                        {candidate.properties?.file_path && (
+                        {/* {candidate.properties?.file_path && (
                           <ExternalLink className="h-3 w-3 text-indigo-400 inline-flex shrink-0" />
-                        )}
+                        )} */}
                       </h2>
 
                       <div className="flex items-center gap-4">
