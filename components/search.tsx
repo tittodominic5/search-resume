@@ -376,7 +376,11 @@ export default function SearchComponent() {
                                         ? "w-full"
                                         : "w-1/2 overflow-hidden whitespace-nowrap text-ellipsis"
                                     } text-lg text-gray-700 font-semibold`}
-                                    onClick={toggleExpandedSearch}
+                                    onClick={() => {
+                                      toggleExpandedSearch();
+                                      setResults(null);
+                                      setKeyRequirements([]);
+                                    }}
                                   >
                                     {query.trim() ? (
                                       <div className="line-clamp-3 break-words">
