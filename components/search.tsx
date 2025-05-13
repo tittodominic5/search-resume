@@ -179,7 +179,7 @@ export default function SearchComponent() {
   // Clear search results
   const handleClearSearch = () => {
     setQuery("");
-    setResults([]);
+    setResults(null);
     setKeyRequirements([]);
     setExpandedSearch(true);
     setTimeout(() => {
@@ -407,7 +407,7 @@ export default function SearchComponent() {
                                 value={query}
                                 onChange={(e) => setQuery(e.target.value)}
                                 onKeyDown={handleKeyDown}
-                                className={`min-h-[400px] py-3 pl-12 pr-10 text-lg border-0 shadow-none bg-transparent resize-none transition-all ${
+                                className={`min-h-[200px] py-3 pl-12 pr-10 text-lg border-0 shadow-none bg-transparent resize-none transition-all ${
                                   hasResults && !expandedSearch
                                     ? "text-indigo-700 font-medium"
                                     : "text-slate-800"
