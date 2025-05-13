@@ -76,7 +76,7 @@ export default function SearchResults({ results }: SearchResultsProps) {
                     </Avatar>
 
                     <div className="min-w-0">
-                      <h3
+                      <h2
                         className="font-medium text-indigo-900 truncate flex items-center gap-1"
                         title={displayName}
                       >
@@ -84,7 +84,7 @@ export default function SearchResults({ results }: SearchResultsProps) {
                         {candidate.properties?.file_path && (
                           <ExternalLink className="h-3 w-3 text-indigo-400 inline-flex shrink-0" />
                         )}
-                      </h3>
+                      </h2>
 
                       <div className="flex items-center gap-4">
                         {candidate?.properties?.company && (
@@ -97,8 +97,8 @@ export default function SearchResults({ results }: SearchResultsProps) {
                         )}
 
                         {candidate?.metadata?.distance && (
-                          <div className="hidden sm:flex items-center text-slate-600 text-sm">
-                            <Gauge className="h-4 w-4 mr-1 shrink-0" />
+                          <div className="hidden sm:flex items-center text-slate-600 text-xs">
+                            <Gauge className="h-3 w-3 mr-1 shrink-0" />
                             <span className="truncate">
                               {candidate?.metadata?.distance.toFixed(2)}
                             </span>
@@ -106,7 +106,7 @@ export default function SearchResults({ results }: SearchResultsProps) {
                         )}
 
                         {candidate?.properties?.email && (
-                          <div className="hidden md:flex items-center text-slate-600 text-sm">
+                          <div className="hidden md:flex items-center text-slate-600 text-xs">
                             <Mail className="h-3 w-3 mr-1 shrink-0" />
                             <span className="truncate">
                               {candidate.properties.email}
