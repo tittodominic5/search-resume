@@ -1,16 +1,17 @@
 "use client";
 
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { ExternalLink, FileText, Tag } from "lucide-react";
-import Link from "next/link";
-import { Badge } from "./ui/badge";
-import { Card, CardContent } from "./ui/card";
+import { Briefcase, ExternalLink, Mail, MapPin } from "lucide-react";
 
 interface Candidate {
-  id: string;
+  file_id?: string;
   name: string;
-  resumeUrl?: string;
+  file_path?: string;
   skills?: string[];
+  properties?: any;
 }
 
 interface SearchResultsProps {
@@ -18,58 +19,124 @@ interface SearchResultsProps {
 }
 
 export default function SearchResults({ results }: SearchResultsProps) {
+  // Get initials from name
+  const getInitials = (name: string) => name[0]?.toUpperCase() || "?";
+
+  // Get avatar color based on index
+  const getAvatarColor = (index: number) => {
+    const colors = [
+      "bg-blue-100 text-blue-800",
+      "bg-green-100 text-green-800",
+      "bg-purple-100 text-purple-800",
+      "bg-amber-100 text-amber-800",
+      "bg-rose-100 text-rose-800",
+      "bg-indigo-100 text-indigo-800",
+    ];
+    return colors[index % colors.length];
+  };
+
+  // Handle resume link click
+  const openResumeUrl = (url?: string, e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (url)
+      window.open(
+        process.env.NEXT_PUBLIC_BASE_URL + url,
+        "_blank",
+        "noopener,noreferrer"
+      );
+  };
+
   return (
-    <div className="space-y-3">
-      {results.map((candidate) => (
-        <motion.div
-          key={candidate.id}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.2 }}
-          className="group"
-        >
-          <Card className="overflow-hidden hover:shadow-lg transition-all border-slate-200 group-hover:border-indigo-200 h-36">
-            <CardContent className="px-5 py-0">
-              <div className="flex items-start justify-between">
-                <div className="w-full">
-                  {candidate.resumeUrl ? (
-                    <>
-                      <h3 className="font-medium text-lg text-indigo-900 group-hover:text-indigo-700 cursor-default flex items-center">
-                        <FileText className="h-4 w-4 mr-2 text-indigo-600" />
-                        {candidate.name}
+    <div className="space-y-2">
+      {results.map((candidate, index) => {
+        const initials = getInitials(
+          candidate.name || candidate?.properties?.title || "?"
+        );
+        const avatarColor = getAvatarColor(index);
+        const displayName =
+          candidate?.properties?.title || candidate.name || "N/A";
+
+        return (
+          <motion.div
+            key={candidate.file_id || index}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2, delay: index * 0.03 }}
+          >
+            <Card
+              className="border-slate-200 hover:border-indigo-200 hover:shadow-sm transition-all duration-200 cursor-pointer"
+              onClick={() => openResumeUrl(candidate.properties?.file_path)}
+            >
+              <CardContent className="p-3">
+                <div className="flex items-center justify-between relative">
+                  <div className="flex items-center gap-3">
+                    <Avatar className={`h-9 w-9 shrink-0 ${avatarColor}`}>
+                      <AvatarFallback>{initials}</AvatarFallback>
+                    </Avatar>
+
+                    <div className="min-w-0">
+                      <h3
+                        className="font-medium text-indigo-900 truncate flex items-center gap-1"
+                        title={displayName}
+                      >
+                        {displayName}
+                        {candidate.properties?.file_path && (
+                          <ExternalLink className="h-3 w-3 text-indigo-400 inline-flex shrink-0" />
+                        )}
                       </h3>
-                      <Link href={candidate.resumeUrl} target="_blank">
-                        <h5 className="font-mono text-sm text-gray-500 cursor-pointer hover:underline flex items-center pl-1 pt-1 italic">
-                          Click here to open resume in new tab
-                          <ExternalLink className="h-4 w-4 ml-2" />
-                        </h5>
-                      </Link>
-                    </>
-                  ) : (
-                    <h3 className="font-medium text-lg text-indigo-900">
-                      {candidate.name}
-                    </h3>
-                  )}
-                  {candidate.skills && candidate.skills.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      {candidate.skills.map((skill, index) => (
-                        <Badge
-                          key={index}
-                          variant="secondary"
-                          className="bg-indigo-50 text-indigo-700 hover:bg-indigo-100"
-                        >
-                          <Tag className="h-3 w-3 mr-1" />
-                          {skill}
-                        </Badge>
-                      ))}
+
+                      <div className="flex items-center gap-4">
+                        {candidate?.properties?.company && (
+                          <div className="flex items-center text-slate-600 text-xs">
+                            <Briefcase className="h-3 w-3 mr-1 shrink-0" />
+                            <span className="truncate">
+                              {candidate.properties.company}
+                            </span>
+                          </div>
+                        )}
+
+                        {candidate?.properties?.location && (
+                          <div className="hidden sm:flex items-center text-slate-600 text-xs">
+                            <MapPin className="h-3 w-3 mr-1 shrink-0" />
+                            <span className="truncate">
+                              {candidate.properties.location}
+                            </span>
+                          </div>
+                        )}
+
+                        {candidate?.properties?.email && (
+                          <div className="hidden md:flex items-center text-slate-600 text-xs">
+                            <Mail className="h-3 w-3 mr-1 shrink-0" />
+                            <span className="truncate">
+                              {candidate.properties.email}
+                            </span>
+                          </div>
+                        )}
+                      </div>
                     </div>
+                  </div>
+
+                  {candidate.properties?.file_path && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50 ml-2 p-2 h-8"
+                      onClick={(e) =>
+                        openResumeUrl(candidate.properties?.file_path, e)
+                      }
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      <span className="sr-only md:not-sr-only md:ml-1 text-xs">
+                        Resume
+                      </span>
+                    </Button>
                   )}
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-      ))}
+              </CardContent>
+            </Card>
+          </motion.div>
+        );
+      })}
     </div>
   );
 }
