@@ -100,7 +100,7 @@ export default function HomePage() {
             onMouseLeave={handleMouseLeave}
           >
             <Image
-              className="text-white mx-auto mb-6 shadow-2xl hover:scale-110 transition-all duration-300 ease-in-out"
+              className="text-white mx-auto mb-6 hover:scale-110 transition-all duration-300 ease-in-out"
               src="/logo.png"
               alt="Logo"
               width={160}
