@@ -135,7 +135,6 @@ export default function SearchComponent() {
   const [error, setError] = useState<string | null>(null);
   const [isTouched, setIsTouched] = useState(false);
   const [keyRequirements, setKeyRequirements] = useState<string[]>([]);
-  const [searchProgress, setSearchProgress] = useState(0);
   const [animateInput, setAnimateInput] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [resume1, setResume1] = useState<string>("");
@@ -363,16 +362,6 @@ export default function SearchComponent() {
                     expandedSearch ? "pb-6" : "py-2"
                   }`}
                 >
-                  {/* Progress Bar */}
-                  {searchProgress > 0 && (
-                    <motion.div
-                      className="h-1 bg-indigo-600 rounded-full"
-                      initial={{ width: "0%" }}
-                      animate={{ width: `${searchProgress}%` }}
-                      transition={{ ease: "easeInOut" }}
-                    />
-                  )}
-
                   <div className="flex flex-col gap-2">
                     <div className="relative">
                       <div className="flex">
