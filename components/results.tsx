@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Briefcase, ExternalLink, Mail, MapPin } from "lucide-react";
+import { Briefcase, ExternalLink, Gauge, Mail } from "lucide-react";
 
 interface Candidate {
   file_id?: string;
@@ -12,6 +12,7 @@ interface Candidate {
   file_path?: string;
   skills?: string[];
   properties?: any;
+  metadata?: any;
 }
 
 interface SearchResultsProps {
@@ -95,17 +96,17 @@ export default function SearchResults({ results }: SearchResultsProps) {
                           </div>
                         )}
 
-                        {candidate?.properties?.location && (
-                          <div className="hidden sm:flex items-center text-slate-600 text-xs">
-                            <MapPin className="h-3 w-3 mr-1 shrink-0" />
+                        {candidate?.metadata?.distance && (
+                          <div className="hidden sm:flex items-center text-slate-600 text-sm">
+                            <Gauge className="h-4 w-4 mr-1 shrink-0" />
                             <span className="truncate">
-                              {candidate.properties.location}
+                              {candidate?.metadata?.distance.toFixed(2)}
                             </span>
                           </div>
                         )}
 
                         {candidate?.properties?.email && (
-                          <div className="hidden md:flex items-center text-slate-600 text-xs">
+                          <div className="hidden md:flex items-center text-slate-600 text-sm">
                             <Mail className="h-3 w-3 mr-1 shrink-0" />
                             <span className="truncate">
                               {candidate.properties.email}
