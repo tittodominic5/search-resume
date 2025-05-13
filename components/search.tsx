@@ -68,6 +68,56 @@ const analyzeJobDescription = (text: string) => {
     "HTML",
     "Performance",
     "SEO",
+    "node",
+    "js",
+    "Webpack",
+    "Vite",
+    "ESLint",
+    "Prettier",
+    "Tailwind",
+    "SASS",
+    "SCSS",
+    "REST",
+    "GraphQL",
+    "WebSockets",
+    "JWT",
+    "OAuth",
+    "CI/CD",
+    "Docker",
+    "Kubernetes",
+    "Microservices",
+    "Monorepo",
+    "Vercel",
+    "Netlify",
+    "Serverless",
+    "Redis",
+    "PostgreSQL",
+    "MongoDB",
+    "Prisma",
+    "Supabase",
+    "Firebase",
+    "Zod",
+    "Jest",
+    "Cypress",
+    "Playwright",
+    "Stripe",
+    "Twilio",
+    "Auth0",
+    "React Query",
+    "TanStack",
+    "Redux",
+    "Zustand",
+    "Hooks",
+    "Responsive",
+    "Accessibility",
+    "i18n",
+    "SSR",
+    "ISR",
+    "CSR",
+    "SWR",
+    "Linting",
+    "Testing",
+    "DevOps",
   ];
 
   const foundKeywords = keywords.filter((kw) =>
@@ -99,27 +149,6 @@ export default function SearchComponent() {
   const showError = isTouched && !isValid && query.trim() !== "";
   const hasResults = results && results.length > 0;
 
-  // Mock progress animation during search
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
-
-    if (isLoading) {
-      setSearchProgress(0);
-      interval = setInterval(() => {
-        setSearchProgress((prev) => {
-          const increment = Math.random() * 15;
-          const newValue = prev + increment;
-          return newValue > 95 ? 95 : newValue;
-        });
-      }, 200);
-    } else if (searchProgress > 0) {
-      setSearchProgress(100);
-      setTimeout(() => setSearchProgress(0), 600);
-    }
-
-    return () => clearInterval(interval);
-  }, [isLoading]);
-
   // Handle search submission
   const handleSearch = async () => {
     if (!isValid) return;
@@ -135,10 +164,10 @@ export default function SearchComponent() {
     try {
       const searchResults = await liveSearchApi(query);
       setResults(searchResults);
+      setIsLoading(false);
       if (searchResults.length > 0) {
         setExpandedSearch(false);
       }
-      setIsLoading(false);
     } catch (err) {
       console.log(err);
       setError("An error occurred while searching. Please try again.");
